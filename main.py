@@ -1,16 +1,38 @@
-# This is a sample Python script.
+import sys
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLineEdit, QProgressBar, QPushButton, QApplication
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+class Downloader(QDialog):
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    def __init__(self):
+        QDialog.__init__(self)
+
+        layout = QVBoxLayout()
+
+        url = QLineEdit()
+        save_location = QLineEdit()
+        progress = QProgressBar()
+        download = QPushButton("Download")
+
+        url.setPlaceholderText("URL")
+        save_location.setPlaceholderText("File save location")
+
+        progress.setValue(0)
+        progress.setAlignment(Qt.AlignHCenter)
+
+        layout.addWidget(url)
+        layout.addWidget(save_location)
+        layout.addWidget(progress)
+        layout.addWidget(download)
+
+        self.setLayout(layout)
+        self.setWindowTitle("PyDownloader")
+        self.setFocus()
+
+
+app = QApplication(sys.argv)
+dialog = Downloader()
+dialog.show()
+app.exec_()
