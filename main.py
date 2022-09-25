@@ -2,12 +2,19 @@ import sys
 import urllib.request
 
 from PyQt5.QtCore import Qt, QDir
-from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLineEdit, QProgressBar, QPushButton, QApplication, QMessageBox, \
-    QFileDialog
+from PyQt5.QtWidgets import (
+    QDialog,
+    QVBoxLayout,
+    QLineEdit,
+    QProgressBar,
+    QPushButton,
+    QApplication,
+    QMessageBox,
+    QFileDialog,
+)
 
 
 class Downloader(QDialog):
-
     def __init__(self):
         QDialog.__init__(self)
 
@@ -39,7 +46,9 @@ class Downloader(QDialog):
         browse.clicked.connect(self.browse_file)
 
     def browse_file(self):
-        save_file = QFileDialog.getSaveFileName(self, caption="Save File As", directory=".", filter="All Files (*.*)")
+        save_file = QFileDialog.getSaveFileName(
+            self, caption="Save File As", directory=".", filter="All Files (*.*)"
+        )
         self.save_location.setText(QDir.toNativeSeparators(save_file[0]))
 
     def download(self):
